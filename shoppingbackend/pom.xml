@@ -14,8 +14,10 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>1.7</maven.compiler.source>
-    <maven.compiler.target>1.7</maven.compiler.target>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    
+    <springframework.version>5.2.6.RELEASE</springframework.version>
   </properties>
 
   <dependencies>
@@ -25,6 +27,13 @@
       <version>4.11</version>
       <scope>test</scope>
     </dependency>
+    
+    <!-- Spring MVC support -->
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-context</artifactId>
+		<version>${springframework.version}</version>
+	</dependency>
   </dependencies>
 
   <build>

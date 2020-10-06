@@ -23,6 +23,12 @@
   </properties>
 
   <dependencies>
+  
+  	<dependency>
+		<groupId>com.harshit</groupId>
+		<artifactId>shoppingbackend</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</dependency>
 
 	<!-- Add support for java ee -->
 	<dependency>
