@@ -24,7 +24,7 @@
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>4.11</version>
+      <version>4.12</version>
       <scope>test</scope>
     </dependency>
     
@@ -34,6 +34,45 @@
 		<artifactId>spring-context</artifactId>
 		<version>${springframework.version}</version>
 	</dependency>
+	
+	<dependency>
+		<groupId>org.hibernate</groupId>
+		<artifactId>hibernate-core</artifactId>
+		<version>5.4.22.Final</version>
+	</dependency>
+	
+	<!-- Add mySql and C3P0 support -->
+		<dependency>
+  			<groupId>mysql</groupId>
+  			<artifactId>mysql-connector-java</artifactId>
+  			<version>8.0.16</version>
+		</dependency>
+		<!--  
+		<dependency>
+  			<groupId>com.mchange</groupId>
+  			<artifactId>c3p0</artifactId>
+  			<version>0.9.5.5</version>
+		</dependency>
+		-->
+		<!-- Database Connection Pooling -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-dbcp2</artifactId>
+			<version>2.1.1</version>
+			<exclusions>
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+			</exclusions>			
+		</dependency>
+		
+		<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-orm</artifactId>
+		<version>${springframework.version}</version>
+	</dependency>
+	
   </dependencies>
 
   <build>
