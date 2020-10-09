@@ -35,6 +35,9 @@
 <!-- Bootstrap readable theme -->
 <link href="${css}/bootstrap-readable-theme.css" rel="stylesheet">
 
+<!-- Bootstrap DataTable -->
+<link href="${css}/dataTables.bootstrap.css" rel="stylesheet">
+
 <!-- Custom CSS -->
 <link href="${css}/myapp.css" rel="stylesheet">
 
@@ -76,6 +79,16 @@
 			<c:if test="${userClickAllProducts==true or userClickCategoryProducts==true}">
 				<%@include file="listProducts.jsp"%>
 			</c:if>
+			
+			<!-- Load only when user click Contact  -->
+			<c:if test="${userClickShowProduct==true}">
+				<%@include file="singleProduct.jsp"%>
+			</c:if>
+			
+			<!-- Load only when user manage Products  -->
+			<c:if test="${userClickManageProducts==true}">
+				<%@include file="manageProducts.jsp"%>
+			</c:if>
 
 
 		</div>
@@ -89,9 +102,17 @@
 
 		<!-- Bootstrap Core JavaScript -->
 		<script src="${js}/bootstrap.min.js"></script>
+		
+		<!-- DataTable Plugin -->
+		<script src="${js}/jquery.dataTables.js"></script>
+		
+		<!-- DataTable Bootstrap js -->
+		<script src="${js}/dataTables.bootstrap.js"></script>
 
 		<!-- Loading my JavaScript -->
-		<script src="${js}/myapp.js"></script>
+		<script src="${js}/myapp1.js"></script>
+		
+		
 
 
 	</div>

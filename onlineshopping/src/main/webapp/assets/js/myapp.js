@@ -47,6 +47,7 @@ $(function() {
 	}
 
 	// code for jquery dataTable
+	
 	var $table = $('#productListTable');
 
 	// execute the below code only where we have this table
