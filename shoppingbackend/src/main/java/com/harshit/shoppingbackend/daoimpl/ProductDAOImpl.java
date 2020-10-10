@@ -26,7 +26,7 @@ public class ProductDAOImpl implements ProductDAO {
 	public List<Product> list() {
 		return sessionFactory
 				.getCurrentSession()
-				  .createQuery("From Product", Product.class)
+				  .createQuery("from Product", Product.class)
 				  	.getResultList();
 	}
 

@@ -12,9 +12,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.harshit.onlineshopping.util.FileUploadUtility;
@@ -52,11 +54,10 @@ public class ManagementController {
 
 		mv.addObject("product", nProduct);
 
-		if(success != null) {
-			if(success.equals("product")){
+		if (success != null) {
+			if (success.equals("product")) {
 				mv.addObject("message", "Product Added successfully!");
-			}	
-			else if (success.equals("category")) {
+			} else if (success.equals("category")) {
 				mv.addObject("message", "Category Added successfully!");
 			}
 		}
@@ -67,30 +68,78 @@ public class ManagementController {
 
 	// handling product submission
 	@RequestMapping(value = "/products", method = RequestMethod.POST)
-	public String handleProductSubmission(@Valid @ModelAttribute("product") Product mProduct, 
-											BindingResult results,
-											Model model, 
-											HttpServletRequest request) {
-		
-		new ProductValidator().validate(mProduct, results);
-		if(results.hasErrors()) {
+	public String handleProductSubmission(@Valid @ModelAttribute("product") Product mProduct, BindingResult results,
+			Model model, HttpServletRequest request) {
+
+		// mandatory file upload check
+		if (mProduct.getId() == 0) {
+			new ProductValidator().validate(mProduct, results);
+		} else {
+			// edit check only when the file has been selected
+			if (!mProduct.getFile().getOriginalFilename().equals("")) {
+				new ProductValidator().validate(mProduct, results);
+			}
+		}
+		if (results.hasErrors()) {
 			model.addAttribute("message", "Validation fails for adding the product!");
-			model.addAttribute("userClickManageProducts",true);
+			model.addAttribute("userClickManageProducts", true);
 			model.addAttribute("title", "Manage Products");
 			return "page";
-		}	
-
-		
-		productDAO.add(mProduct);
-		
-		if(!mProduct.getFile().getOriginalFilename().equals("")) {
-			FileUploadUtility.upload(request, mProduct.getFile(), mProduct.getCode());
 		}
+
+		if(mProduct.getId() == 0 ) {
+			productDAO.add(mProduct);
+		}
+		else {
+			productDAO.update(mProduct);
+		}
+	
+		 //upload the file
+		 if(!mProduct.getFile().getOriginalFilename().equals("") ){
+			 FileUploadUtility.upload(request, mProduct.getFile(), mProduct.getCode()); 
+		 }
 		return "redirect:/manage/products?operation=product";
+	}
+	
+	@RequestMapping("/{id}/product")
+	public ModelAndView manageProductEdit(@PathVariable int id) {		
+
+		ModelAndView mv = new ModelAndView("page");	
+		mv.addObject("title","Product Management");		
+		mv.addObject("userClickManageProducts",true);
+		
+		// Product nProduct = new Product();		
+		mv.addObject("product", productDAO.get(id));
+
+			
+		return mv;
+		
 	}
 
 	@ModelAttribute("categories")
 	public List<Category> getCategories() {
 		return categoryDAO.list();
+	}
+	
+	@ModelAttribute("category")
+	public Category modelCategory() {
+		return new Category();
+	}
+	
+	@RequestMapping(value = "/category", method=RequestMethod.POST)
+	public String managePostCategory(@ModelAttribute("category") Category mCategory, HttpServletRequest request) {					
+		categoryDAO.add(mCategory);		
+		//return "redirect:" + request.getHeader("Referer") + "?operation=category";
+		return "redirect:/manage/products?operation=category";
+	}
+
+	@RequestMapping(value = "/product/{id}/activation", method = RequestMethod.GET)
+	@ResponseBody
+	public String managePostProductActivation(@PathVariable int id) {
+		Product product = productDAO.get(id);
+		boolean isActive = product.isActive();
+		product.setActive(!isActive);
+		productDAO.update(product);
+		return (isActive) ? "Product Dectivated Successfully!" : "Product Activated Successfully";
 	}
 }

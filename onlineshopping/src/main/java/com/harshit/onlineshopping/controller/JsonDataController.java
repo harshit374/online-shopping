@@ -2,6 +2,8 @@ package com.harshit.onlineshopping.controller;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,13 +17,15 @@ import com.harshit.shoppingbackend.dto.Product;
 @RequestMapping("/json/data")
 public class JsonDataController {
 
+	public static Logger logger = LoggerFactory.getLogger(JsonDataController.class);
+
 	@Autowired
 	private ProductDAO productDAO;
 	
 
 	@RequestMapping("/admin/all/products")
 	@ResponseBody
-	public List<Product> getAllProductsList() {		
+	public List<Product> getAllProductsList() {	
 		return productDAO.list();
 				
 	}	
@@ -30,7 +34,6 @@ public class JsonDataController {
 	@RequestMapping("/all/products")
 	@ResponseBody
 	public List<Product> getAllProducts() {
-		
 		return productDAO.listActiveProducts();
 				
 	}

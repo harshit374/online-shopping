@@ -1,3 +1,4 @@
+
 /*!
  * Start Bootstrap - Shop Homepage (http://startbootstrap.com/)
  * Copyright 2013-2016 Start Bootstrap
@@ -237,5 +238,9 @@ input:checked + .slider:before {
 		height:100%;
 		z-index:9999;
 		background:url(../images/pre-loader.gif) 50% no-repeat #fff
+}
+
+.table-responsive{
+	overflow-x:inherit
 }
 

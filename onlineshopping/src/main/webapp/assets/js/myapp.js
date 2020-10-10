@@ -47,7 +47,6 @@ $(function() {
 	}
 
 	// code for jquery dataTable
-	
 	var $table = $('#productListTable');
 
 	// execute the below code only where we have this table
@@ -152,15 +151,17 @@ $(function() {
 	
 	
 	// list of all products for admin
-	var $productsTable = $('#productsTable');
+	var $adminProductsTable = $('#adminProductsTable');
+	console.log(myapp);
+	console.log($productsTable.length);
+	console.log(myapp);
 	
-	
-	if($productsTable.length) {
+	if($adminProductsTable.length) {
 		
 		var jsonUrl = window.contextRoot + '/json/data/admin/all/products';
 		console.log(jsonUrl);
 		
-		$productsTable.DataTable({
+		$adminProductsTable.DataTable({
 					lengthMenu : [ [ 10, 30, 50, -1 ], [ '10 Records', '30 Records', '50 Records', 'ALL' ] ],
 					pageLength : 30,
 					ajax : {
@@ -168,17 +169,18 @@ $(function() {
 						dataSrc : ''
 					},
 					columns : [		
-					           	{data: 'id'},
-
-
-					           	{data: 'code',
-					           	 bSortable: false,
-					           		mRender: function(data,type,row) {
-					           			return '<img src="' + window.contextRoot
-										+ '/resources/images/' + data
-										+ '.jpg" class="dataTableImg"/>';					           			
-					           		}
-					           	},
+					{
+						data: 'id'
+					},
+					{
+						data: 'code',
+        				bSortable: false,
+    					mRender: function(data,type,row) {
+							return '<img src="' + window.contextRoot
+									+ '/resources/images/' + data
+									+ '.jpg" class="dataTableImg"/>';					           			
+						}
+					},
 					           	{
 									data : 'name'
 								},
