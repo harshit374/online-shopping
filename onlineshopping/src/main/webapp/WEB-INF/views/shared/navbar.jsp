@@ -47,8 +47,8 @@
 							class="caret"></span>
 					</a>
 						<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-							<security:authorize access="hasAuthority('USER')">
-								<li id="cart"><a href="${contextRoot}/cart/show"> <span
+							<security:authorize access="hasAuthority('USER')" >
+								<li id="userCart"><a href="${contextRoot}/cart/show"> <span
 										class="glyphicon glyphicon-shopping-cart"></span>&#160;<span
 										class="badge">${userModel.cart.cartLines}</span> - &#8377;
 										${userModel.cart.grandTotal}

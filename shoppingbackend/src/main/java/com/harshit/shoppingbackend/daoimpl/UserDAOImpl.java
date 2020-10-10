@@ -47,16 +47,6 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public boolean updateCart(Cart cart) {
-		try {
-			sessionFactory.getCurrentSession().update(cart);
-			return true;
-		} catch (Exception ex) {
-			return false;
-		}
-	}
-
-	@Override
 	public boolean addAddress(Address address) {
 		try {
 			sessionFactory.getCurrentSession().persist(address);
@@ -95,5 +85,16 @@ public class UserDAOImpl implements UserDAO {
 		return sessionFactory.getCurrentSession().createQuery(selectQuery, Address.class).setParameter("userId", userId)
 				.setParameter("isShipping", true).getResultList();
 
+	}
+	
+	@Override
+	public boolean updateCart(Cart cart) {
+		try {			
+			sessionFactory.getCurrentSession().update(cart);			
+			return true;
+		}
+		catch(Exception ex) {
+			return false;
+		}
 	}
 }

@@ -15,17 +15,27 @@ public class CartLine {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	
 	@OneToOne
 	private Product product;
+	
+//	@Column(name = "product_id")
+//	private int productId;	
+	
 	@Column(name = "cart_id")
 	private int cartId;	
+	
 	@Column(name = "product_count")
 	private int productCount;
+	
 	private double total;
+	
 	@Column(name = "buying_price")
 	private double buyingPrice;
+	
 	@Column(name = "is_available")
 	private boolean available = true;
+	
 	public int getId() {
 		return id;
 	}
@@ -68,6 +78,12 @@ public class CartLine {
 	public void setAvailable(boolean available) {
 		this.available = available;
 	}
-	
+//	public int getProductId() {
+//		return productId;
+//	}
+//	public void setProductId(int productId) {
+//		this.productId = productId;
+//	}
+//	
 	
 }

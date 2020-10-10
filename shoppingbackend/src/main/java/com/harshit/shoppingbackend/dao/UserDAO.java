@@ -2,9 +2,13 @@ package com.harshit.shoppingbackend.dao;
 
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.harshit.shoppingbackend.dto.Address;
 import com.harshit.shoppingbackend.dto.Cart;
 import com.harshit.shoppingbackend.dto.User;
+
 
 public interface UserDAO {
 	

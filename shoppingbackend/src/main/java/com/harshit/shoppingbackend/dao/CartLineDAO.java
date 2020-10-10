@@ -2,14 +2,17 @@ package com.harshit.shoppingbackend.dao;
 
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.harshit.shoppingbackend.dto.Cart;
 import com.harshit.shoppingbackend.dto.CartLine;
 import com.harshit.shoppingbackend.dto.OrderDetail;
 
 public interface CartLineDAO {
 
+	public CartLine get(int id);
 	public List<CartLine> list(int cartId);
-	public CartLine get(int id);	
 	public boolean add(CartLine cartLine);
 	public boolean update(CartLine cartLine);
 	public boolean remove(CartLine cartLine);
