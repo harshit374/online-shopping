@@ -97,6 +97,11 @@
 				<%@include file="cart.jsp"%>
 			</c:if>
 			
+			<!-- Load only when user click Cart  -->
+			<c:if test="${userClickShowPendingOrder==true}">
+				<%@include file="pendingOrder.jsp"%>
+			</c:if>
+			
 
 
 		</div>

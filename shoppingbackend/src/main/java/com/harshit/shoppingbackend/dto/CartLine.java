@@ -36,6 +36,15 @@ public class CartLine {
 	@Column(name = "is_available")
 	private boolean available = true;
 	
+	@Column(name = "status")
+	private int status;
+	
+	public int getStatus() {
+		return status;
+	}
+	public void setStatus(int status) {
+		this.status = status;
+	}
 	public int getId() {
 		return id;
 	}

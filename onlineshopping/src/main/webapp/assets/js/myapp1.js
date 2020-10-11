@@ -2,7 +2,17 @@
  * 
  */
 // solving the active menu problem
+
+
 $(function() {
+	
+	
+	// for adding a loader
+	$(window).load(function(){
+		setTimeout(function() {
+			$(".se-pre-con").fadeOut("slow");
+		}, 500);			
+	});	
 
 	switch (menu) {
 
@@ -18,8 +28,11 @@ $(function() {
 	case 'Manage Products':
 		$('#manageProducts').addClass('active');
 		break;
-	case 'User Cart':
-		$('#userCart').addClass('active');
+	case 'Shopping Cart':
+		$('#userModel').addClass('active');
+		break;
+	case 'Pending Orders':
+		$('#userModel').addClass('active');
 		break;
 	default:
 		if (menu == "Home")

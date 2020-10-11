@@ -80,13 +80,12 @@
 								Total Amount to Pay: <strong> &#8377; ${userModel.cart.grandTotal } /-</strong>
 							</blockquote>
 							<p class="text-center">
-							<a href="${flowExecutionUrl}&_eventId_personal" class="btn btn-success">Confirm</a>
+							<a href="${contextRoot}/cart/confirm" class="btn btn-success">Confirm</a>
 						</p>
 						</div>
 					</div>
 				</div>
 			</div>
-
 
 		</div>
 

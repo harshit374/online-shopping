@@ -13,23 +13,20 @@
 	</c:if>
 	
 	<c:choose>
-		<c:when test="${not empty cartLines}">
+		<c:when test="${not empty cartLinePending}">
 			<table id="cart" class="table table-hover table-condensed">
 			   	<thead>
 					<tr>
 						<th style="width:50%">Product</th>
 						<th style="width:10%">Price</th>
 						<th style="width:8%">Quantity</th>
-						<th style="width:22%" class="text-center">Subtotal</th>
-						<th style="width:10%"></th>
+						<th style="width:20%" class="text-center">Subtotal</th>
+						<th style="width:12%">Status</th>
+						
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach items="${cartLines}" var="cartLine">
-					<c:if test="${cartLine.available == false}">
-						<c:set var="availableCount" value="${availableCount - 1}"/>
-					</c:if>
-					
+					<c:forEach items="${cartLinePending}" var="cartLine">			
 					<tr>
 						<td data-th="Product">
 							<div class="row">
@@ -48,15 +45,11 @@
 						</td>
 						<td data-th="Price"> &#8377; ${cartLine.buyingPrice} /-</td>
 						<td data-th="Quantity">
-							<input type="number" id="count_${cartLine.id}" class="form-control text-center" value="${cartLine.productCount}" min="1" max="3">
+							<input type="text" class="form-control text-center" value="${cartLine.productCount}" min="1" max="3" disabled>
 						</td>
 						<td data-th="Subtotal" class="text-center">&#8377; ${cartLine.total} /-</td>
-						<td class="actions" data-th="">
-							<c:if test="${cartLine.available == true}">
-								<button type="button" name="refreshCart" class="btn btn-info btn-sm" value="${cartLine.id}"><span class="glyphicon glyphicon-refresh"></span></button>
-							</c:if>												
-							<a href="${contextRoot}/cart/${cartLine.id}/remove" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span></a>								
-						</td>
+
+						<td data-th="Status"> <span class="label label-danger">Pending</span></td>
 					</tr>
 					</c:forEach>
 				</tbody>
@@ -69,14 +62,7 @@
 						<td colspan="2" class="hidden-xs"></td>
 						<td class="hidden-xs text-center"><strong>Total &#8377; ${userModel.cart.grandTotal}/-</strong></td>
 						
-						<c:choose>
-							<c:when test="${availableCount != 0}">
-								<td><a href="${contextRoot}/cart/validate" class="btn btn-success btn-block">Checkout <span class="glyphicon glyphicon-chevron-right"></span></a></td>
-							</c:when>							
-							<c:otherwise>
-								<td><a href="javascript:void(0)" class="btn btn-success btn-block disabled">Checkout <span class="glyphicon glyphicon-chevron-right"></span></a></td>
-							</c:otherwise>
-						</c:choose>						
+										
 					</tr>
 				</tfoot>
 			</table>
@@ -93,4 +79,8 @@
 		
 		</c:otherwise>
 	</c:choose>
+
+
+
+
 </div>

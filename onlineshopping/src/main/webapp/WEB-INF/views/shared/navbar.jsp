@@ -25,6 +25,7 @@
 
 				<li id="contact"><a href="${contextRoot }/contact">Contact</a>
 				</li>
+				
 				<li id="listProducts"><a
 					href="${contextRoot }/show/all/products">View Products</a></li>
 				<security:authorize access="hasAuthority('ADMIN')">
@@ -35,7 +36,7 @@
 
 			<ul class="nav navbar-nav navbar-right">
 				<security:authorize access="isAnonymous()">
-					<li id="signup"><a href="${contextRoot}/membership">Sign
+					<li id="signup"><a href="${contextRoot}/register">Sign
 							Up</a></li>
 					<li id="login"><a href="${contextRoot}/login">Login</a></li>
 				</security:authorize>
@@ -54,6 +55,8 @@
 										${userModel.cart.grandTotal}
 								</a></li>
 								<li role="separator" class="divider"></li>
+								<li id="pendingOrder"><a href="${contextRoot }/cart/pendingOrder">Pending Orders</a>
+								</li>
 							</security:authorize>
 							<li id="logout"><a href="${contextRoot}/perform-logout">Logout</a></li>
 						</ul></li>

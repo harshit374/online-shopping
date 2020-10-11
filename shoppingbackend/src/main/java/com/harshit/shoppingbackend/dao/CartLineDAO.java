@@ -12,7 +12,7 @@ import com.harshit.shoppingbackend.dto.OrderDetail;
 public interface CartLineDAO {
 
 	public CartLine get(int id);
-	public List<CartLine> list(int cartId);
+	public List<CartLine> list(int cartId, int status);
 	public boolean add(CartLine cartLine);
 	public boolean update(CartLine cartLine);
 	public boolean remove(CartLine cartLine);
